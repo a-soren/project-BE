@@ -1,10 +1,17 @@
 const db = require("../data/dbConfig.js");
+module.exports = {
+  insert,
+  update,
+  remove,
+  getById,
+  getAll
+};
 
 function insert(user) {
   return db("users")
     .insert(user)
-    .then(ids => {
-      return getById(ids[0]);
+    .then(id => {
+      return getById(id[0]);
     });
 }
 
@@ -28,11 +35,3 @@ function getById(id) {
 function getAll(users) {
   return db("users");
 }
-
-module.exports = {
-  insert,
-  update,
-  remove,
-  getById,
-  getAll
-};
